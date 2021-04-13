@@ -1,9 +1,13 @@
 console.log('%c HI', 'color: firebrick')
 const letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 let dogBreed = document.querySelector('ul#dog-breeds')
-
+let firstLetter = document.querySelector('select')
 //Challenge 1
-document.addEventListener('DOMContentLoaded', e => {
+// document.addEventListener('DOMContentLoaded', e => {
+
+// })
+
+ 
     fetch("https://dog.ceo/api/breeds/image/random/4")
     .then(res => res.json())
     .then(res => {
@@ -16,7 +20,7 @@ document.addEventListener('DOMContentLoaded', e => {
         })    
     })
 
-//Challenge 2
+     //Challenge 2
     
     
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -38,7 +42,27 @@ document.addEventListener('DOMContentLoaded', e => {
             
             
         }) 
-        dogBreedDisplay(val); 
+        
+        // Challenge 4: Dropdown chooses first letter 
+        firstLetter.addEventListener('change', (e) => { 
+            val.forEach(dogsIDKey =>  {       //Can you use forEach on a DOM node?
+            let dogID = document.querySelector(`li#${dogsIDKey}`)
+            //console.log(dogID)
+                if (firstLetter.value == dogID.innerText.charAt(0)){
+                    dogID.style.display = 'block';
+                }
+                else {
+                    dogID.style.display = 'none';
+                }
+                
+            })
+        
+        })
+
+
+
+
+
     })
 // Challenge 3
 
@@ -53,33 +77,8 @@ document.addEventListener('DOMContentLoaded', e => {
     })
 
 // Challenge 4
-function dogBreedDisplay(val) { 
-    let firstLetter = document.querySelector('select')
-    let dogID = document.querySelector("vizsla")
-    //let abc = dogID.innerText
-    //console.log(abc)
-    //console.log(dogNodes)
-    //console.log(val)
-    val.forEach(dogs =>  {       //Can you use forEach on a DOM node?
-    //console.log(dogs)
-    //let dogNum = `#${dogs}`
-    let dogNum = "#vizsla"
-    //console.log(dogNum)
-    let dogID = document.querySelector("vizsla")
-    console.log(dogID)
-        // if (firstLetter.value == dogID.innerText.charAt(0)){
-        //     dogID.style.display = 'block';
-        // }
-        // else {
-        //     dogID.style.display = 'none';
-        // }
-        
-    })
 
+
+function colorChecker (text,color) {
+    text.style.color = color;
 }
-
-    function colorChecker (text,color) {
-        text.style.color = color;
-    }
-
-})
